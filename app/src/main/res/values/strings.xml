@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PdfApp</string>
+    <string name="salutation">DEAR SIR,\nAS PER YOUR INQUIRY WE ARE GIVING YOU THE RATE OF ITEMS AS INDICATED BELOW\t</string>
+    <string name="toGNP">TO,\nCHIEF OFFICER\nGANDHIDHAM NAGARPALIKA\nGANDHIDHAM</string>
+    <string name="subject">SUB:- RATE OF ITEMS FOR VEHICLE NO.  </string>
+    <string name="srno">Sr.No.</string>
+    <string name="particulars">Particulars</string>
+    <string name="quantity">Quantity</string>
+    <string name="rate">Rate</string>
+    <string name="total">Total</string>
+    <string name="surana_automobiles">SURANA AUTOMOBILES</string>
+    <string name="vikash_automobiles">VIKASH AUTOMOBILES</string>
+    <string name="hari_om_traders">HARI OM TRADERS</string>
+    <string name="address_suranaAutomobile">SHOP NO-10 PJP CHAMBER,PLOT NO-70 NATIONAL HIGHWAY, GANDHIDHAM KUTCH -370201</string>
+    <string name="address_vikashAutomobile">SHOP NO 88, PRAKAS CHAMBER, PLOT NO-12, NATIONAL HIGHWAY GANDHIDHAM KUTCH -370201</string>
+    <string name="address_hariOmTraders">SHOP NO 23, RADHE CHAMBER, PLOT NO-63, NATIONAL HIGHWAY GANDHIDHAM KUTCH -370201</string>
+    <string name="date">Date</string>
+    <string name="datetv">Date</string>
+</resources>
