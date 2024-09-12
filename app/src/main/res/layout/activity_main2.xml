@@ -33,29 +33,48 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp" />
 </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/layoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/addbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/baseline_add_circle_outline_24"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="459dp" />
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/addbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/baseline_add_circle_outline_24"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="459dp" />
 
 
-    <Button
-        android:id="@+id/submit"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/layoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp"
+            >
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
 
 </LinearLayout>
