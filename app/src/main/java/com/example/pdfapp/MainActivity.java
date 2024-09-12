@@ -4,45 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
-import android.graphics.pdf.PdfDocument.PageInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.itextpdf.io.image.ImageData;
-import com.itextpdf.io.image.ImageDataFactory;
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Image;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     final static int REQUEST_CODE=121;
+    private static DecimalFormat decfor=new DecimalFormat("0.00");
     public static double postScriptThreshold = 0.75;
     public final static int a4HeightInPX = 3508;
     public final static int a4WidthInPX = 2480;
@@ -51,13 +38,16 @@ public class MainActivity extends AppCompatActivity {
     int pageWidthInPixel=0;
     int pageHeightInPixel=0;
     Button button;
-    TextView gTotal,tvdate,tvvehicleNo,textView1,textView2,textView8;
+    TextView gTotal,tvdate,tvvehicleNo,textView1,textView2;
     RecyclerView rTable;
     RecycleItemAdapt adapter;
     ArrayList<Items> arrItem=new ArrayList<>();
 //    View container;
     RelativeLayout container;
     int total;
+    int taxableValue;
+    int cgst;
+    int sgst;
     String date,vv;
     @Override
     public void onBackPressed() {
@@ -75,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         button=findViewById(R.id.button);
         tvdate=findViewById(R.id.tvdate);
         tvvehicleNo=findViewById(R.id.textView5);
+//        taxableValue=findViewById(R.id.taxableValue);
+//        taxable=findViewById(R.id.taxable);
+//        CGST=findViewById(R.id.CGST);
+//        SGST=findViewById(R.id.SGST);
         gTotal=findViewById(R.id.gTotal);
         rTable=findViewById(R.id.rTable);
         rTable.setLayoutManager(new LinearLayoutManager(this));
@@ -105,20 +99,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void putAdapterandTotal() {
+    private void  putAdapterandTotal() {
        adapter = new RecycleItemAdapt(this,arrItem);
         rTable.setAdapter(adapter);
         total=findTotal();
         gTotal.setText(Integer.toString(total));
     }
 
+
     private int findTotal() {
-        int sum=0;
+        double sum=0;
         for(Items i:arrItem)
             sum+=i.getTotal();
-        return sum;
-    }
 
+        return (int)Math.ceil(sum);
+    }
 
 
     private String fileName(String date) {
@@ -141,21 +136,30 @@ public class MainActivity extends AppCompatActivity {
         textView1.setText(getString(R.string.vikash_automobiles));
         textView2.setText(getString(R.string.address_vikashAutomobile));
         str="FROM "+getString(R.string.vikash_automobiles);
-
-        for(Items i:arrItem){
-            i.rate+=(.1*i.rate);
-            i.total=i.rate*i.quant;
+//
+//        for(Items i:arrItem){
+//            i.rate+=(.1*i.rate);
+//            i.taxableValue=i.rate*i.quant;
+//            i.sgst=i.cgst=i.taxableValue*i.perc/200;
+//            i.total=i.taxableValue+i.cgst+i.sgst;
+//        }
+//        putAdapterandTotal();
         }
-        putAdapterandTotal();}
         else if(p==2){
         textView1.setText(getString(R.string.hari_om_traders));
         textView2.setText(getString(R.string.address_hariOmTraders));
-        str="FROM "+getString(R.string.hari_om_traders);
-        for(Items i:arrItem){
+        str="FROM "+getString(R.string.hari_om_traders);}
+        if(p==1||p==2)
+        {for(Items i:arrItem){
             i.rate+=(.1*i.rate);
-            i.total=i.rate*i.quant;
+            i.taxableValue=Double.parseDouble(decfor.format(i.rate*i.quant));
+            i.sgst=i.cgst= Double.parseDouble(decfor.format(i.taxableValue*i.perc/200));
+            i.total=Double.parseDouble(decfor.format(i.taxableValue+i.cgst+i.sgst));}
+//            i.total=Math.round(i.total*100)/100;
+//            i.rate=Math.round(i.rate*100)/100;
+//            i.cgst=i.sgst=Math.round(i.cgst*100)/100;
         }
-        putAdapterandTotal();}
+        putAdapterandTotal();
 
         container=findViewById(R.id.outer_Container);
         return str;

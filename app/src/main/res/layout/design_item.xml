@@ -12,7 +12,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_margin="3dp"
-        android:hint="Items" />
+        android:hint="Items"
+        android:inputType="textCapCharacters"
+        />
 
     <EditText
         android:id="@+id/tvQu"
@@ -31,6 +33,14 @@
         android:inputType="number"
         android:layout_margin="3dp"
         android:hint="Rate" />
+    <EditText
+        android:id="@+id/tvPerc"
+        android:layout_width="2dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:inputType="number"
+        android:layout_margin="3dp"
+        android:hint="%" />
 
     <ImageButton
         android:id="@+id/removeBtn"

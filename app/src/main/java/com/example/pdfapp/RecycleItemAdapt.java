@@ -34,8 +34,12 @@ public class RecycleItemAdapt extends RecyclerView.Adapter<RecycleItemAdapt.Viie
         holder.tvSrno.setText(Integer.toString(arr.get(position).id));
         holder.tvItems.setText(arr.get(position).itemName);
         holder.tvQu.setText(Integer.toString(arr.get(position).quant));
-        holder.tvRate.setText(Integer.toString(arr.get(position).rate));
-        holder.tvTotal.setText(Integer.toString(arr.get(position).total));
+        holder.tvRate.setText(Double.toString(arr.get(position).rate));
+        holder.tvPercentage.setText(Integer.toString(arr.get(position).perc)+"%");
+        holder.tvTaxableValue.setText(Double.toString(arr.get(position).taxableValue));
+        holder.tvCGST.setText(Double.toString(arr.get(position).cgst));
+        holder.tvSGST.setText(Double.toString(arr.get(position).sgst));
+        holder.tvTotal.setText(Double.toString(arr.get(position).total));
     }
 
     @Override
@@ -44,13 +48,17 @@ public class RecycleItemAdapt extends RecyclerView.Adapter<RecycleItemAdapt.Viie
     }
 
     public class ViiewHolder extends RecyclerView.ViewHolder{
-    TextView tvSrno,tvItems,tvRate,tvQu,tvTotal;
+    TextView tvSrno,tvItems,tvRate,tvQu,tvPercentage,tvTaxableValue,tvCGST,tvSGST,tvTotal;
     public ViiewHolder(@NonNull View itemView) {
         super(itemView);
         tvSrno=itemView.findViewById(R.id.tvSrno);
         tvItems=itemView.findViewById(R.id.tvItems);
         tvQu=itemView.findViewById(R.id.tvQu);
         tvRate=itemView.findViewById(R.id.tvRate);
+        tvPercentage=itemView.findViewById(R.id.tvPercentage);
+        tvTaxableValue=itemView.findViewById(R.id.tvTaxableV);
+        tvCGST=itemView.findViewById(R.id.tvCGST);
+        tvSGST=itemView.findViewById(R.id.tvSGST);
         tvTotal=itemView.findViewById(R.id.tvTotal);
     }
 }

@@ -11,13 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity2 extends AppCompatActivity {
     final static int REQUEST_CODE=111;
+    private static DecimalFormat decfor=new DecimalFormat("0.00");
     ImageButton add;
     LinearLayout layoutList;
     Button submit;
@@ -58,6 +58,7 @@ public class MainActivity2 extends AppCompatActivity {
             EditText tvItems = (EditText) v.findViewById(R.id.tvItems);
             EditText tvQu = (EditText) v.findViewById(R.id.tvQu);
             EditText tvRate = (EditText) v.findViewById(R.id.tvRate);
+            EditText tvPerc = (EditText) v.findViewById(R.id.tvPerc);
 //            EditText tvTotal=(EditText)v.findViewById(R.id.tvTotal);
 //            TextView tvTotal = (TextView) v.findViewById(R.id.tvTotal);
 
@@ -71,12 +72,24 @@ public class MainActivity2 extends AppCompatActivity {
             int q = Integer.parseInt(tvQu.getText().toString());
             item.setQuant(q);
 
-            int r = Integer.parseInt(tvRate.getText().toString());
+            double r = Double.parseDouble(tvRate.getText().toString());
             item.setRate(r);
+            int p = Integer.parseInt(tvPerc.getText().toString());
+            item.setPerc(p);
 
 
 //                tvTotal.setText(q*r);
-                item.setTotal(q*r);
+            double taxablevalue=q*r;
+            double cgst=taxablevalue*p/200;
+            double sgst=taxablevalue*p/200;
+//            cgst=Math.round(cgst*100)/100;
+//            sgst=Math.round(sgst*100)/100;
+            double total=taxablevalue+cgst+sgst;
+//            total=Math.round(total*100)/100;
+                item.setTaxableValue(Double.parseDouble(decfor.format(taxablevalue)));
+                item.setCgst(Double.parseDouble(decfor.format(cgst)));
+                item.setSgst(Double.parseDouble(decfor.format(sgst)));
+                item.setTotal(Double.parseDouble(decfor.format(total)));
 
             array.add(item);
         }
@@ -101,8 +114,8 @@ public class MainActivity2 extends AppCompatActivity {
        EditText tvItems=(EditText)v.findViewById(R.id.tvItems);
        EditText tvQu=(EditText)v.findViewById(R.id.tvQu);
        EditText tvRate=(EditText)v.findViewById(R.id.tvRate);
-//       EditText tvTotal=(EditText)v.findViewById(R.id.tvTotal);
-      TextView tvTotal=(TextView)v.findViewById(R.id.tvTotal);
+       EditText tvPerc=(EditText)v.findViewById(R.id.tvPerc);
+//      TextView tvTotal=(TextView)v.findViewById(R.id.tvTotal);
        ImageButton imageButton=(ImageButton)v.findViewById(R.id.removeBtn);
 
        imageButton.setOnClickListener(new View.OnClickListener() {
