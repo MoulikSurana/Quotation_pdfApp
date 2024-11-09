@@ -73,8 +73,11 @@ public class MainActivity2 extends AppCompatActivity {
             item.setQuant(q);
 
             double r = Double.parseDouble(tvRate.getText().toString());
-            item.setRate(r);
             int p = Integer.parseInt(tvPerc.getText().toString());
+            int divisor=p+100;
+            r=(r/divisor)*100;
+
+            item.setRate(Double.parseDouble(decfor.format(r)));
             item.setPerc(p);
 
 

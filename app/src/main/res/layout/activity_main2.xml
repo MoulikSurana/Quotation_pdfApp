@@ -6,56 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2"
     android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:text="Date"/>
-    <EditText
-        android:id="@+id/et_date"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:layout_margin="8dp" />
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:text="Vehicle No."/>
-    <EditText
-        android:id="@+id/et_vehicle"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp" />
-</LinearLayout>
     <LinearLayout
-        android:id="@+id/layoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Date"/>
+        <EditText
+            android:id="@+id/et_date"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:layout_margin="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Vehicle No."/>
+        <EditText
+            android:id="@+id/et_vehicle"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp" />
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/addbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/baseline_add_circle_outline_24"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="459dp" />
-
-
-    <Button
-        android:id="@+id/submit"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/addbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            app:srcCompat="@drawable/baseline_add_circle_outline_24"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="459dp" />
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="Button" />
+    </LinearLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/layoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp"
+            >
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
 
 </LinearLayout>

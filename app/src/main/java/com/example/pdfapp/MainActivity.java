@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         String vehicleNo=(String)getIntent().getExtras().getSerializable("vehicle");
         tvdate.setText(date);
 //        tvvehicleNo.setText(vehicleNo);
-        tvvehicleNo.append(vehicleNo);
+        tvvehicleNo.append("  "+vehicleNo);
 //        textView8.append(getString(R.string.surana_automobiles));
         putAdapterandTotal();
 
