@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PdfApp</string>
-    <string name="salutation">DEAR SIR,\nAS PER YOUR INQUIRY WE ARE GIVING YOU THE RATE OF ITEMS AS INDICATED BELOW\t</string>
-    <string name="toGNP">TO,\nCHIEF OFFICER\nGANDHIDHAM NAGARPALIKA\nGANDHIDHAM</string>
+    <string name="salutation">DEAR SIR/MA\'AM ,\nAS PER YOUR INQUIRY WE ARE GIVING YOU THE RATE OF ITEMS AS INDICATED BELOW\t</string>
+    <string name="toGNP">TO,\nDEPUTY MUNICIPAL COMMISSIONER\nGANDHIDHAM MUNICIPAL CORPORATION\nGANDHIDHAM</string>
     <string name="subject">SUB:- RATE OF ITEMS FOR VEHICLE NO.  </string>
     <string name="srno">Sr.No.</string>
     <string name="particulars">Particulars</string>

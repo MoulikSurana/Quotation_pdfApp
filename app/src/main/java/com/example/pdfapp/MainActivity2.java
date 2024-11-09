@@ -73,16 +73,19 @@ public class MainActivity2 extends AppCompatActivity {
             item.setQuant(q);
 
             double r = Double.parseDouble(tvRate.getText().toString());
-            item.setRate(r);
             int p = Integer.parseInt(tvPerc.getText().toString());
+            int divisor=p+100;
+//            r=(r/divisor)*100;
+            r=Double.parseDouble(decfor.format((r/divisor)*100));
+            item.setRate(r);
             item.setPerc(p);
 
 
 //                tvTotal.setText(q*r);
             double taxablevalue=q*r;
-            double cgst=taxablevalue*p/200;
-            double sgst=taxablevalue*p/200;
-//            cgst=Math.round(cgst*100)/100;
+            double cgst=Double.parseDouble(decfor.format(taxablevalue*p/200));
+            double sgst=Double.parseDouble(decfor.format(taxablevalue*p/200));
+            // cgst=Math.round(cgst*100)/100;
 //            sgst=Math.round(sgst*100)/100;
             double total=taxablevalue+cgst+sgst;
 //            total=Math.round(total*100)/100;

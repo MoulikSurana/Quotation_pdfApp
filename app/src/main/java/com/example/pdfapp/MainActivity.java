@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         String vehicleNo=(String)getIntent().getExtras().getSerializable("vehicle");
         tvdate.setText(date);
 //        tvvehicleNo.setText(vehicleNo);
-        tvvehicleNo.append(vehicleNo);
+        tvvehicleNo.append("  "+vehicleNo);
 //        textView8.append(getString(R.string.surana_automobiles));
         putAdapterandTotal();
 
@@ -151,7 +152,8 @@ public class MainActivity extends AppCompatActivity {
         str="FROM "+getString(R.string.hari_om_traders);}
         if(p==1||p==2)
         {for(Items i:arrItem){
-            i.rate+=(.1*i.rate);
+//            i.rate+=(.1*i.rate);
+            i.rate=Double.parseDouble(decfor.format( i.rate+(.1*i.rate)));
             i.taxableValue=Double.parseDouble(decfor.format(i.rate*i.quant));
             i.sgst=i.cgst= Double.parseDouble(decfor.format(i.taxableValue*i.perc/200));
             i.total=Double.parseDouble(decfor.format(i.taxableValue+i.cgst+i.sgst));}
@@ -160,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
 //            i.cgst=i.sgst=Math.round(i.cgst*100)/100;
         }
         putAdapterandTotal();
-
         container=findViewById(R.id.outer_Container);
         return str;
     }
@@ -271,7 +272,26 @@ public class MainActivity extends AppCompatActivity {
 
             container.layout(0, 0, pageWidthInPixel, pageHeightInPixel);
             Canvas c = page.getCanvas();
-//            Canvas c=new Canvas();
+
+            Bitmap bitmap;
+            if(p==0){
+             bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sign1);
+            } else if (p==1) {
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sign2);
+            }
+            else{
+             bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sign3);
+            }
+
+// Set the position for the image
+            int imageX = 40; // X coordinate
+            int imageY = pageHeightInPixel - 400; // Y coordinate (adjust as needed)
+            int imageWidth = 600; // Width of the image
+            int imageHeight = 250; // Height of the image
+
+// Draw the image on the canvas
+            c.drawBitmap(Bitmap.createScaledBitmap(bitmap, imageWidth, imageHeight, false), imageX, imageY, null);
+
             container.draw(c);
 
             Paint paint=new Paint();
@@ -281,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
 
             doc.finishPage(page);
 //
-            Toast.makeText(this, "page " + (p + 1) + " Complete!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "page " + (p + 1) + " Complete!", Toast.LENGTH_SHORT).show();
 
         }
 
