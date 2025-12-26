@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     int taxableValue;
     int cgst;
     int sgst;
-    String date,vv;
+    String date,vv,vehicleNo;
     @Override
     public void onBackPressed() {
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         arrItem=(ArrayList<Items>) getIntent().getExtras().getSerializable("list");
          date=(String)getIntent().getExtras().getSerializable("date");
-        String vehicleNo=(String)getIntent().getExtras().getSerializable("vehicle");
+        vehicleNo=(String)getIntent().getExtras().getSerializable("vehicle");
         tvdate.setText(date);
 //        tvvehicleNo.setText(vehicleNo);
         tvvehicleNo.append("  "+vehicleNo);
@@ -156,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
             i.rate=Double.parseDouble(decfor.format( i.rate+(.1*i.rate)));
             i.taxableValue=Double.parseDouble(decfor.format(i.rate*i.quant));
             i.sgst=i.cgst= Double.parseDouble(decfor.format(i.taxableValue*i.perc/200));
-            i.total=Double.parseDouble(decfor.format(i.taxableValue+i.cgst+i.sgst));}
+            i.total=Double.parseDouble(decfor.format(i.taxableValue+i.cgst+i.sgst));
+            i.total=Math.round(i.total);}
 //            i.total=Math.round(i.total*100)/100;
 //            i.rate=Math.round(i.rate*100)/100;
 //            i.cgst=i.sgst=Math.round(i.cgst*100)/100;
@@ -310,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 //        File dowDir=new File(Environment.getExternalStorageDirectory(),"GNP");
 
         String folderName = "GNP";
-        String filename=fileName(date);
+        String filename=fileName(date+"."+vehicleNo);
         File folder= new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),folderName);
         if (!folder.exists()){
             if (folder.mkdirs()) {

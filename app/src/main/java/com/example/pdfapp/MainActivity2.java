@@ -92,7 +92,8 @@ public class MainActivity2 extends AppCompatActivity {
                 item.setTaxableValue(Double.parseDouble(decfor.format(taxablevalue)));
                 item.setCgst(Double.parseDouble(decfor.format(cgst)));
                 item.setSgst(Double.parseDouble(decfor.format(sgst)));
-                item.setTotal(Double.parseDouble(decfor.format(total)));
+//                item.setTotal(Double.parseDouble(decfor.format(total)));
+            item.setTotal(Math.round(total));
 
             array.add(item);
         }
